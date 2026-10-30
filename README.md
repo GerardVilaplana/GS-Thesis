@@ -67,7 +67,9 @@ threshold on the target scene.
 
 - `src/handaffordsplat/`: portable feature, model, metric, checkpoint, and PLY utilities.
 - `scripts/`: user-facing prediction and archive-validation entry points.
-- `Affordances/scripts/`: original thesis experiment and figure-generation scripts.
+- `Affordances/scripts/`: selected data-construction, training, ablation, and
+  evaluation workflows. See its README for the active script set and the
+  `thesis-submission-snapshot` tag for the complete historical tree.
 - `REALM-Code/`: project-side REALM integration files.
 - `Supervision/scripts/`: mask-generation utilities.
 - `docs/`: dataset, results, and reproducibility documentation.

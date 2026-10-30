@@ -68,8 +68,9 @@ def draw_boxes(image_path, boxes, query, frame_name, max_width):
         color = colors[i % len(colors)]
         draw.rectangle([x1, y1, x2, y2], outline=color, width=4)
         label = str(item.get("label", f"box {i}"))
-        if "score" in item:
-            label += f" {float(item['score']):.2f}"
+        confidence = item.get("confidence", item.get("score"))
+        if confidence is not None:
+            label += f" {float(confidence):.2f}"
         tx, ty = x1 + 4, max(28, y1 - 15)
         bbox = draw.textbbox((tx, ty), label, font=font)
         draw.rectangle(bbox, fill=(0, 0, 0))
@@ -86,20 +87,25 @@ def make_writer(path, fps, size):
     return writer
 
 
-def build_prompt(image_path, query):
+def build_prompt(image_path, query, request_confidence=False):
     im = Image.open(image_path)
+    fields = "label, and explanation"
+    ordering = ""
+    if request_confidence:
+        fields = "label, confidence as a number from 0.0 to 1.0, and explanation"
+        ordering = " Sort detections by confidence from highest to lowest."
     return (
         "Locate the object or objects described by the query in this image. "
         f"Image size is width={im.width}, height={im.height}. "
         "Return ONLY a valid JSON list. Each item must contain "
         "bbox_2d as [x1, y1, x2, y2] in absolute pixel coordinates, "
-        "label, and explanation. Do not include markdown or extra text. "
+        f"{fields}. Do not include markdown or extra text.{ordering} "
         f"Query: {query}"
     )
 
 
-def run_qwen(model, processor, image_path, query, max_new_tokens):
-    prompt = build_prompt(image_path, query)
+def run_qwen(model, processor, image_path, query, max_new_tokens, request_confidence=False):
+    prompt = build_prompt(image_path, query, request_confidence=request_confidence)
     messages = [
         {
             "role": "user",
@@ -144,6 +150,11 @@ def main():
     parser.add_argument("--fps", type=float, default=6.0)
     parser.add_argument("--max_width", type=int, default=960)
     parser.add_argument("--max_new_tokens", type=int, default=256)
+    parser.add_argument(
+        "--request-confidence",
+        action="store_true",
+        help="Request confidence values and sort detections by confidence.",
+    )
     args = parser.parse_args()
 
     frames = sorted_frame_paths(args.image_dir)
@@ -184,7 +195,14 @@ def main():
         print(f"Processing query: {query}", flush=True)
         try:
             for idx, frame in enumerate(frames):
-                raw, boxes, parse_error = run_qwen(model, processor, frame, query, args.max_new_tokens)
+                raw, boxes, parse_error = run_qwen(
+                    model,
+                    processor,
+                    frame,
+                    query,
+                    args.max_new_tokens,
+                    request_confidence=args.request_confidence,
+                )
                 overlay = draw_boxes(frame, boxes, query, frame.name, args.max_width)
                 writer.write(cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR))
                 summary["queries"][query].append({

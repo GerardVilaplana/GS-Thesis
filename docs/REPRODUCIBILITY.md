@@ -10,8 +10,11 @@
 
 ## Reproducing model development
 
-The original thesis scripts are retained under `Affordances/scripts/`. The key
-final scripts are:
+The active branch retains the scripts required by the final thesis workflows
+and their direct Python dependencies under `Affordances/scripts/`. The exact
+pre-cleanup script tree is permanently preserved by the
+`thesis-submission-snapshot` Git tag and in the separate publication archive.
+The key final scripts on the active branch are:
 
 - `build_handal_exp40_15k_gt_features.py`: supervised object construction.
 - `extract_handal_dinov2_gaussian_embeddings.py`: multi-view DINOv2 assignment.
@@ -21,10 +24,11 @@ final scripts are:
 - `recompute_external_baselines_seen_canonical.py`: external baseline metrics.
 - `recompute_graph_ablation_validation.py`: graph appendix metrics.
 
-These scripts preserve the exact thesis procedure but some retain historical
-absolute paths. The separate provenance archive contains the complete authored
-source snapshot and the exact working-tree patch. Prefer the portable package
-for inference and use the research scripts when reproducing an experiment.
+These retained scripts preserve the thesis procedure, but some still contain
+historical absolute paths. The separate provenance archive contains the
+complete authored source snapshot and exact working-tree patch. Prefer the
+portable package for inference, use the retained research scripts to reproduce
+reported experiments, and consult the snapshot tag for exploratory one-offs.
 
 ## Selection protocol
 
