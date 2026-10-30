@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handaffordsplat"
+version = "0.1.0"
+description = "Handle affordance prediction on 3D Gaussian Splatting representations"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+  {name = "Gerard Vilaplana Pelegri"}
+]
+dependencies = [
+  "numpy>=1.21",
+  "torch>=1.12",
+  "plyfile>=0.8",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+handaffordsplat-predict = "handaffordsplat.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

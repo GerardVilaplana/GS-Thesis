@@ -1,0 +1,13 @@
+name: handaffordsplat
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.8
+  - numpy=1.24
+  - pytorch=1.12
+  - plyfile
+  - pytest
+  - pip
+  - pip:
+      - -e .

@@ -1,0 +1,16 @@
+{
+  "model_name": "pointnet_mean",
+  "feature_variant": "dino_geometry_color_quality",
+  "input_dimension": 401,
+  "dino_dimension": 384,
+  "gaussian_dimension": 14,
+  "quality_dimension": 3,
+  "latent_dimension": 192,
+  "dino_backbone": "facebook/dinov2-small",
+  "dino_assignment": "object_crop_center_avg",
+  "crop_margin_fraction": 0.2,
+  "maximum_selected_views": 48,
+  "quality_view_normalizer": 96.0,
+  "handle_label_key": "handle_labels_thr0_25",
+  "visualization_overlay_alpha": 0.7
+}

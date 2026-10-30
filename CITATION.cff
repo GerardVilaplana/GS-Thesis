@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use HandAffordSplat, please cite this work."
+title: "HandAffordSplat: Handle Affordance Prediction on 3D Gaussian Splats with Language-Guided Object Segmentation"
+type: software
+authors:
+  - family-names: "Vilaplana Pelegri"
+    given-names: "Gerard"
+repository-code: "https://github.com/GerardVilaplana/GS-Thesis"
+version: 0.1.0
+date-released: 2026-10-30

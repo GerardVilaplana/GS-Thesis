@@ -4,3 +4,17 @@ __pycache__/
 build/
 dist/
 *.egg-info/
+.pytest_cache/
+.coverage
+
+# Large research artifacts are distributed separately.
+data/
+datasets/
+checkpoints/
+outputs/
+*.pt
+*.pth
+*.ply
+*.npz
+*.npy
+*.tar.gz
