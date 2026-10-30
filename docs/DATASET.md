@@ -55,7 +55,9 @@ Gaussians. Invalid DINOv2 rows are set to zero before feature concatenation.
 
 ## Distribution note
 
-HANDAL is an upstream dataset with CC BY-NC-SA 4.0 terms. Before publishing the
-derived benchmark, confirm with the supervisors whether derived Gaussian
-representations and lifted labels may be redistributed directly or whether the
-release should provide a reconstruction script and manifests only.
+HANDAL is an upstream dataset distributed under CC BY-NC-SA 4.0. The derived
+Gaussian representations, lifted labels, released model weights, and associated
+benchmark artifacts distributed by HandAffordSplat use the same CC BY-NC-SA
+4.0 terms. See [`DATA_LICENSE.md`](../DATA_LICENSE.md) for the release policy.
+The original personal scene captures under `private_material` remain private
+and are excluded from the public benchmark.

@@ -86,6 +86,9 @@ Citation metadata is provided in [CITATION.cff](CITATION.cff).
 
 ## License
 
-The repository license must be confirmed with the project supervisors before a
-public dataset or code release. HANDAL data retains its upstream
-CC BY-NC-SA 4.0 terms; third-party components retain their own licenses.
+Original HandAffordSplat source code is released under the [MIT
+License](LICENSE). The HANDAL-derived benchmark, released model weights, and
+associated research artifacts are released under CC BY-NC-SA 4.0; see
+[DATA_LICENSE.md](DATA_LICENSE.md). Third-party components retain their own
+licenses, as documented in [THIRD_PARTY.md](THIRD_PARTY.md). Personal scene
+captures under `private_material` are not part of the public release.
